@@ -4,16 +4,20 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class DateTimeTwo {
 	
-	private LocalDateTime currentDateTime = LocalDateTime.now();
+	private LocalDate currentDate = LocalDate.now();
 	private HashMap<LocalDate, Integer> LocalDatesMap = new HashMap<LocalDate, Integer>();
 	private ArrayList<String> localDatesArray = new ArrayList<String>();
 	
@@ -21,10 +25,8 @@ public class DateTimeTwo {
 		
 		DateTimeFormatter dayOfWeekFormat = DateTimeFormatter.ofPattern("EEEE");
 		
-		String tenthDay = dayOfWeekFormat.format(currentDateTime.withDayOfMonth(10)).toUpperCase();
-		String eighteenthDay = dayOfWeekFormat.format(currentDateTime.withDayOfMonth(18)).toUpperCase();;
-		
-		
+		String tenthDay = dayOfWeekFormat.format(currentDate.withDayOfMonth(10)).toUpperCase();
+		String eighteenthDay = dayOfWeekFormat.format(currentDate.withDayOfMonth(18)).toUpperCase();;
 		
 		System.out.println("The tenth day of this month is " 
 				+ tenthDay + " and eighteenth is " + eighteenthDay);
@@ -55,12 +57,28 @@ public class DateTimeTwo {
 			e.printStackTrace();
 		}
 		
-		for (Entry<LocalDate, Integer> LD: LocalDatesMap.entrySet()) {
-			System.out.println(LD.getKey() + ": " + LD.getValue());
+		for (LocalDate LD: LocalDatesMap.keySet()) {
+			
+			Period period = Period.between(currentDate, LD);
+			int diffInDays = Math.abs(period.getDays());
+			int diffInMonths = Math.abs(period.getMonths());
+			int diffInYears = Math.abs(period.getYears());
+			
+			Year yearInput = Year.of(LD.getYear());
+			boolean isLeapYear = yearInput.isLeap();
+			
+			if (isLeapYear == true) {
+				System.out.println(LD.getYear() + " is a leap year, and Difference: " 
+						+ diffInYears + " years, " + diffInMonths 
+						+ " months, and " + diffInDays + " days.");
+			}
+		
+			else {
+				System.out.println(LD.getYear() + " is not a leap year, and Difference: " 
+						+ diffInYears + " years, " + diffInMonths 
+						+ " months, and " + diffInDays + " days.");
+			}
 		}
-		
-		
-		
 	}
 
 	public void dateHashMap() {
@@ -72,8 +90,12 @@ public class DateTimeTwo {
 	}
 
 	public void dateHashMapSorted() {
-		// TODO Auto-generated method stub
-		
+	     TreeMap<LocalDate, Integer> sortedKeys = new TreeMap<>(LocalDatesMap);
+	        Set<Entry<LocalDate, Integer>> sortedMap = sortedKeys.entrySet();
+	        
+	        for(Entry<LocalDate, Integer> map : sortedMap){
+	            System.out.println(map.getKey() + ": " + map.getValue());
+	        }
 	}
 	
 	public void read(String filename) throws IOException {

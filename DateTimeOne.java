@@ -71,15 +71,6 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 		
-//		String nowNow = dateTimeFormat.format(now);
-//		ZoneId GMTZoneId = ZoneId.of("GMT");
-//        System.out.println("TimeZone : " + GMTZoneId);
-//
-//        //LocalDateTime + ZoneId = ZonedDateTime
-//        ZonedDateTime GMTZonedDateTime = now.atZone(GMTZoneId);
-//        System.out.println("Date (GMT) : " + GMTZonedDateTime);
-		
-		
 		String DateTimeGMT = dateTimeFormat.format(GMT);
 		String DateTimeBST = dateTimeFormat.format(BST);
 		String DateTimeCST = dateTimeFormat.format(CST);
