@@ -1,5 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -99,7 +101,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 		
-		LocalDateTime AST = now.plusHours(1);
+		LocalDateTime AST = LocalDateTime.of(2020, 10, 01, 19, 59);
 		LocalDateTime ZST = LocalDateTime.of(2018, 11, 05, 19, 59);
 		
 		String dateTimeAST = dateTimeFormat.format(AST);
@@ -140,27 +142,28 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
             System.out.println(ZDT.getKey() + "");
         }
         
-        DateTimeFormatter arrayDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter arrayTimeFormat = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter arrayDateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
         
-        String[] dateSortedArray = new String[5];
-        String[] timeSortedArray = new String[5];
+   
+        LocalDateTime[] sortedDateTime = new LocalDateTime[timeZones.size()];
         
-        dateSortedArray[0] = arrayDateFormat.format(AST);
-        dateSortedArray[1] = arrayDateFormat.format(BST);
-        dateSortedArray[2] = arrayDateFormat.format(CST);
-        dateSortedArray[3] = arrayDateFormat.format(GMT);
-        dateSortedArray[4] = arrayDateFormat.format(ZST);
+        LocalDateTime ast = LocalDateTime.parse(dateTimeAST, arrayDateFormat);
+        LocalDateTime bst = LocalDateTime.parse(dateTimeBST, arrayDateFormat);
+        LocalDateTime cst = LocalDateTime.parse(dateTimeCST, arrayDateFormat);
+        LocalDateTime gmt = LocalDateTime.parse(dateTimeGMT, arrayDateFormat);
+        LocalDateTime zst = LocalDateTime.parse(dateTimeZST, arrayDateFormat);
         
-        timeSortedArray[0] = arrayTimeFormat.format(AST);
-        timeSortedArray[1] = arrayTimeFormat.format(BST);
-        timeSortedArray[2] = arrayTimeFormat.format(CST);
-        timeSortedArray[3] = arrayTimeFormat.format(GMT);
-        timeSortedArray[4] = arrayTimeFormat.format(ZST);
+        sortedDateTime[0] = ast;
+        sortedDateTime[1] = bst;
+        sortedDateTime[2] = cst;
+        sortedDateTime[3] = gmt;
+        sortedDateTime[4] = zst;
+    
+        Arrays.sort(sortedDateTime, Collections.reverseOrder());
         
-        System.out.println("Print Style 5: FInal Sorted Array:");
-        for(int i = 0; i < dateSortedArray.length; i++){
-            System.out.println(dateSortedArray[i] + "T" + timeSortedArray[i]);
+        System.out.println("Print Style 5: Final Sorted Array:");
+        for(int i = 0; i < sortedDateTime.length; i++){
+            System.out.println(sortedDateTime[i]);
         }
 	}
    

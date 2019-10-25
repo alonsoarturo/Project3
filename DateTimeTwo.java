@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ import java.util.Map.Entry;
 public class DateTimeTwo {
 	
 	private LocalDateTime currentDateTime = LocalDateTime.now();
-	private HashMap<String, Integer> LocalDatesMap;
-	private ArrayList<String> localDatesArray;
+	private HashMap<LocalDate, Integer> LocalDatesMap = new HashMap<LocalDate, Integer>();
+	private ArrayList<String> localDatesArray = new ArrayList<String>();
+	
 	public void daysOfCurrentMonth() {
 		
 		DateTimeFormatter dayOfWeekFormat = DateTimeFormatter.ofPattern("EEEE");
@@ -53,18 +55,19 @@ public class DateTimeTwo {
 			e.printStackTrace();
 		}
 		
-		HashMap <String, Integer> localdatee = new HashMap<String, Integer>();
-		for (int i = 0; i < localDatesArray.size(); i++) {
-			localdatee.put(localDatesArray.get(i), ++i);
-		}
-		
-		for (Entry<String, Integer> LD: localdatee.entrySet()) {
+		for (Entry<LocalDate, Integer> LD: LocalDatesMap.entrySet()) {
 			System.out.println(LD.getKey() + ": " + LD.getValue());
 		}
+		
+		
+		
 	}
 
 	public void dateHashMap() {
-		// TODO Auto-generated method stub
+		
+		for (Entry<LocalDate, Integer> LD: LocalDatesMap.entrySet()) {
+			System.out.println(LD.getKey() + ": " + LD.getValue());
+		}
 		
 	}
 
@@ -76,17 +79,21 @@ public class DateTimeTwo {
 	public void read(String filename) throws IOException {
 		
 		 BufferedReader br = new BufferedReader(new FileReader(filename));
-	       
+	     
+		 DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("MM.dd.yyyy");
+		 
 		 String strg = "";
-	     int i = 1;
+	     int i = 0;
+	     
 		 strg = br.readLine();
+		
 		 while (strg != null) {
+			LocalDate inputDate = LocalDate.parse(strg, inputFormat);
+			
+			LocalDatesMap.put(inputDate, ++i);
 	    	
-	    	LocalDatesMap.put(strg, ++i);
 	    	strg = br.readLine();
-	   
 	     }
-	    
 	     br.close();
 	}
 
