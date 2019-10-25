@@ -1,9 +1,5 @@
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -139,24 +135,32 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	    TreeMap<String, String> sortedValues = new TreeMap<>(ZoneDateTime);
 	    Set<Entry<String, String>> sortedZDT = sortedValues.entrySet();
 		
-        System.out.println("Print Style 2:");
+        System.out.println("Print Style 3:");
         for(Entry<String, String> ZDT : sortedZDT){
             System.out.println(ZDT.getKey() + "");
         }
         
-        DateTimeFormatter arrayFormat = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
+        DateTimeFormatter arrayDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter arrayTimeFormat = DateTimeFormatter.ofPattern("HH:mm");
         
-        String[] finalSortedArray = new String[5];
+        String[] dateSortedArray = new String[5];
+        String[] timeSortedArray = new String[5];
         
-        finalSortedArray[0] = arrayFormat.format(AST);
-        finalSortedArray[1] = arrayFormat.format(BST);
-        finalSortedArray[2] = arrayFormat.format(CST);
-        finalSortedArray[3] = arrayFormat.format(GMT);
-        finalSortedArray[4] = arrayFormat.format(ZST);
+        dateSortedArray[0] = arrayDateFormat.format(AST);
+        dateSortedArray[1] = arrayDateFormat.format(BST);
+        dateSortedArray[2] = arrayDateFormat.format(CST);
+        dateSortedArray[3] = arrayDateFormat.format(GMT);
+        dateSortedArray[4] = arrayDateFormat.format(ZST);
+        
+        timeSortedArray[0] = arrayTimeFormat.format(AST);
+        timeSortedArray[1] = arrayTimeFormat.format(BST);
+        timeSortedArray[2] = arrayTimeFormat.format(CST);
+        timeSortedArray[3] = arrayTimeFormat.format(GMT);
+        timeSortedArray[4] = arrayTimeFormat.format(ZST);
         
         System.out.println("Print Style 5: FInal Sorted Array:");
-        for(int i = 0; i < finalSortedArray.length; i++){
-            System.out.println(finalSortedArray[i].toString());
+        for(int i = 0; i < dateSortedArray.length; i++){
+            System.out.println(dateSortedArray[i] + "T" + timeSortedArray[i]);
         }
 	}
    
