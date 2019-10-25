@@ -38,16 +38,16 @@ public class Main
 		
 		/**
 		 * Section 1
-		 * Current value of “Second” will be stored in vlaueOfSecondNow 
+		 * Current value of Second will be stored in valueOfSecondNow 
 		 * and will print as, "The value of Second now: 58"
 		 * Remember, this is the format only, value should be the current time.
 		 */
-		int vlaueOfSecondNow = dateTimeOne.getValueOfSecond();
+		int valueOfSecondNow = dateTimeOne.getValueOfSecond();
 		/**
-		 * If vlaueOfSecondNow>55, program will sleep for 5 seconds.
+		 * If valueOfSecondNow>55, program will sleep for 5 seconds.
 		 */		
 		
-		if(vlaueOfSecondNow > allowedValueForSecond)
+		if(valueOfSecondNow > allowedValueForSecond)
 		{
 			dateTimeOne.sleepForFiveSec();
 		}
@@ -218,7 +218,7 @@ public class Main
 		 */
 		System.out.println(asciiVal.get(stId));		
 		
-		MesoEquivalent mesoEqual = new MesoEquivalent(stId);		
+		MesoEquivalent mesoEqual = new MesoEquivalent(stId);	//read & check Zylab to see what classes need to be sub,i
 	    /**
 		 * Print the content of the hashmap
 		 * Output: 
