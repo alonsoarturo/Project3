@@ -6,12 +6,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
 		
 	private static final int MILLI_CONVERSION = 1000;
 	private LocalDateTime now = LocalDateTime.now();
+	
+	private LocalDateTime GMT;
+	private LocalDateTime BST;
+	private LocalDateTime CST;
 	
 	@Override
 	int getValueOfSecond() {
@@ -46,9 +52,9 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("H:mm");
 			
-		LocalDateTime GMT = now.plusHours(5);
-		LocalDateTime BST = now.plusHours(6);
-		LocalDateTime CST = GMT.minusHours(5);
+		this.GMT = now.plusHours(5);
+		this.BST = now.plusHours(6);
+		this.CST = GMT.minusHours(5);
 		
 		String serverTime = dateTimeFormat.format(now);
 		String timeGMT = dateTimeFormat.format(GMT);
@@ -65,11 +71,20 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	@Override
 	void dateTimeDifferentZone() {
 		
-		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("M/dd/yyyy HH:mm");
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
 		
-		String DateTimeGMT;
-		String DateTimeBST;
-		String DateTimeCST;
+//		String nowNow = dateTimeFormat.format(now);
+//		ZoneId GMTZoneId = ZoneId.of("GMT");
+//        System.out.println("TimeZone : " + GMTZoneId);
+//
+//        //LocalDateTime + ZoneId = ZonedDateTime
+//        ZonedDateTime GMTZonedDateTime = now.atZone(GMTZoneId);
+//        System.out.println("Date (GMT) : " + GMTZonedDateTime);
+		
+		
+		String DateTimeGMT = dateTimeFormat.format(GMT);
+		String DateTimeBST = dateTimeFormat.format(BST);
+		String DateTimeCST = dateTimeFormat.format(CST);
 		
 		HashMap<String, String> dateTimeDifferentZone = new HashMap<>();
 		
@@ -78,15 +93,71 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		dateTimeDifferentZone.put("CST", DateTimeCST);
 		
 		for (Entry<String, String> DT: dateTimeDifferentZone.entrySet()) {
-			System.out.println(DT.getKey() + ":" + DT.getValue());
+			System.out.println(DT.getKey() + ": " + DT.getValue());
 		}
 		
 	}
 
 	@Override
 	void timeZoneHashMap() {
-		// TODO Auto-generated method stub
 		
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+		
+		LocalDateTime AST = now.plusHours(1);
+		LocalDateTime ZST = LocalDateTime.of(2018, 11, 05, 19, 59);
+		
+		String dateTimeAST = dateTimeFormat.format(AST);
+		String dateTimeBST = dateTimeFormat.format(BST);
+		String dateTimeCST = dateTimeFormat.format(CST);
+		String dateTimeGMT = dateTimeFormat.format(GMT);
+		String dateTimeZST = dateTimeFormat.format(ZST);
+		
+		HashMap<String, String> timeZones = new HashMap<>();
+		
+		timeZones.put("AST", dateTimeAST);
+		timeZones.put("BST", dateTimeBST);
+		timeZones.put("CST", dateTimeCST);
+		timeZones.put("GMT", dateTimeGMT);
+		timeZones.put("ZST", dateTimeZST);
+		
+        TreeMap<String, String> sortedKeys = new TreeMap<>(timeZones);
+        Set<Entry<String, String>> sortedTZ = sortedKeys.entrySet();
+        
+        System.out.println("Print Style 1:");
+        for(Entry<String, String> TZ : sortedTZ){
+            System.out.println(TZ.getKey() + " " + TZ.getValue());
+        }
+        
+        HashMap<String, String> ZoneDateTime = new HashMap<>();
+		
+        ZoneDateTime.put(dateTimeAST, "AST");
+        ZoneDateTime.put(dateTimeBST, "BST");
+        ZoneDateTime.put(dateTimeCST, "CST");
+        ZoneDateTime.put(dateTimeGMT, "GMT");
+        ZoneDateTime.put(dateTimeZST, "ZST");
+        
+	    TreeMap<String, String> sortedValues = new TreeMap<>(ZoneDateTime);
+	    Set<Entry<String, String>> sortedZDT = sortedValues.entrySet();
+		
+        System.out.println("Print Style 2:");
+        for(Entry<String, String> ZDT : sortedZDT){
+            System.out.println(ZDT.getKey() + "");
+        }
+        
+        DateTimeFormatter arrayFormat = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
+        
+        String[] finalSortedArray = new String[5];
+        
+        finalSortedArray[0] = arrayFormat.format(AST);
+        finalSortedArray[1] = arrayFormat.format(BST);
+        finalSortedArray[2] = arrayFormat.format(CST);
+        finalSortedArray[3] = arrayFormat.format(GMT);
+        finalSortedArray[4] = arrayFormat.format(ZST);
+        
+        System.out.println("Print Style 5: FInal Sorted Array:");
+        for(int i = 0; i < finalSortedArray.length; i++){
+            System.out.println(finalSortedArray[i].toString());
+        }
 	}
    
 }
