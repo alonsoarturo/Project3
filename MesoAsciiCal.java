@@ -24,7 +24,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		asciiAvg = (asciiVal[0] + asciiVal[1] + asciiVal[2] + asciiVal[3]) / 4.0;
 		
 		//calAvg = (int)Math.floor(asciiAvg + 0.25);
-		calAvg = (int)Math.floor(asciiAvg);
+		calAvg = (int)Math.round(asciiAvg);
 		asciiCalAvg = calAvg;
 		
 		return calAvg;

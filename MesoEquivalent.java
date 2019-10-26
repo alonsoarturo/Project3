@@ -58,7 +58,7 @@ public class MesoEquivalent {
 			
 			Avg = (int) Math.round(asciiAvg);
 			
-			if (Avg == 73) {
+			if (Avg == asciiCalAvg) {
 				sameAvgArray.add(stationName);
 			}
 		}
