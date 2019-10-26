@@ -9,11 +9,11 @@ import java.util.HashMap;
 public class MesoEquivalent {
 
 	private HashMap<String, Integer> stationMap = new HashMap<String, Integer>();
-	private ArrayList<String> stationArray;
+	private ArrayList<String> stationArray = new ArrayList<String>();
 	private String stationID;
+	private ArrayList<String> sameStationArray = new ArrayList<String>();
 	
 	public MesoEquivalent(String stId) {
-		
 		this.stationID = stId;
 		
 		try {
@@ -26,8 +26,45 @@ public class MesoEquivalent {
 	}
 
 	public HashMap<String, Integer> calAsciiEqual() {
-		// TODO Auto-generated method stub
-		return null;
+		Integer inputAsciiAvg = 73;
+		//sameStationArray = CalSameAsciiAvg();
+		
+		for (int i = 0; i < CalSameAsciiAvg().size(); i++) {
+			stationMap.put(CalSameAsciiAvg().get(i), inputAsciiAvg);
+		}
+		return stationMap;
+	}
+	
+	public ArrayList<String> CalSameAsciiAvg() {
+		int asciiCalAvg = MesoAsciiCal.asciiCalAvg;
+		ArrayList<String> sameAvgArray = new ArrayList<String>();
+		
+		int Avg;
+		double[] asciiVal = new double[4];
+		double asciiAvg = 0.0;
+		String stationName;
+		for(int i = 0; i < stationArray.size(); i++) {
+			
+			Avg = 0;
+			//double[] asciiVal = new double[4];
+			//double asciiAvg = 0.0;
+			stationName = stationArray.get(i);
+			
+			for (int j = 0; j < 4; j++) {
+				asciiVal[j] = (double) stationName.charAt(j);
+			}
+			
+			asciiAvg = (asciiVal[0] + asciiVal[1] + asciiVal[2] + asciiVal[3]) / 4.0;
+			
+			Avg = (int) Math.round(asciiAvg);
+			
+			if (Avg == 73) {
+				sameAvgArray.add(stationName);
+			}
+		}
+		
+		return sameAvgArray;
+		
 	}
 	
 	public void read(String filename) throws IOException {
@@ -35,13 +72,17 @@ public class MesoEquivalent {
 		 BufferedReader br = new BufferedReader(new FileReader(filename));
 		 
 		 String strg = "";
-	   
+		 String stid = "";
+		 
 		 strg = br.readLine();
-		
+		 strg = br.readLine();
+		 strg = br.readLine();
+		 strg = br.readLine();
+		 
 		 while (strg != null) {
+			stid = strg.trim().substring(0, 4);
+			stationArray.add(stid);
 			
-			stationArray.add(strg.trim());
-	    	
 	    	strg = br.readLine();
 	     }
 	     br.close();

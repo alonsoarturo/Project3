@@ -23,7 +23,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		int timeSec = now.getSecond();
 		System.out.println("The value of Second now: " + timeSec);
 		
-		return (int) timeSec;
+		return timeSec;
 	}
 
 	@Override

@@ -3,7 +3,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 {
 
 	protected MesoStation stationID;
-	
+	public static int asciiCalAvg;
 	public MesoAsciiCal(MesoStation mesoStation) {
 		
 		this.stationID = mesoStation;
@@ -23,7 +23,9 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		
 		asciiAvg = (asciiVal[0] + asciiVal[1] + asciiVal[2] + asciiVal[3]) / 4.0;
 		
-		calAvg = (int) Math.round(asciiAvg);
+		//calAvg = (int)Math.floor(asciiAvg + 0.25);
+		calAvg = (int)Math.floor(asciiAvg);
+		asciiCalAvg = calAvg;
 		
 		return calAvg;
 	}
