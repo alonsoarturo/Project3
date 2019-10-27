@@ -12,6 +12,22 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 
 	@Override
 	int calAverage() {
+		
+		int NRMNcalAvg = 0;
+		double[] NRMNasciiVal = new double[4];
+		double NRMNasciiAvg = 0.0;
+		String Norman = "NRMN";
+		
+		for (int i = 0; i < 4; i++) {
+			NRMNasciiVal[i] = (double) Norman.charAt(i);
+		}
+		
+		NRMNasciiAvg = (NRMNasciiVal[0] + NRMNasciiVal[1] + NRMNasciiVal[2] + NRMNasciiVal[3]) / 4.0;
+		
+		//calAvg = (int)Math.floor(asciiAvg + 0.25);
+		NRMNcalAvg = (int)Math.round(NRMNasciiAvg);
+		
+		//************************************
 		int calAvg = 0;
 		double[] asciiVal = new double[4];
 		double asciiAvg = 0.0;
@@ -27,7 +43,8 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		calAvg = (int)Math.round(asciiAvg);
 		asciiCalAvg = calAvg;
 		
-		return calAvg;
+		int Average = (int)Math.round((calAvg + NRMNasciiAvg) / 2);
+		return Average;
 	}
    
 }
