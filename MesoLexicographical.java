@@ -10,21 +10,26 @@ public class MesoLexicographical extends MesoSortedAbstract
 	private HashMap<String, Integer> sortedAsciiMap;
 	
 	public MesoLexicographical(HashMap<String, Integer> asciiVal) {
-//		this.asciiVal = asciiVal;
-//		Map<String, Integer> sorted = sortedMap(asciiVal);
-//		
-//            
-//		for (Entry<String, Integer> out : sorted.entrySet()) {
-//			System.out.println(out.getKey() + " " + out.getValue());
-//		}
+		
+		Map<String, Integer> sorted = sortedMap(asciiVal);
+		
+            
+		for (Entry<String, Integer> out : sorted.entrySet()) {
+			System.out.println(out.getKey() + " " + out.getValue());
+		}
 	
 	}
 
 	@Override
 	Map<String, Integer> sortedMap(HashMap<String, Integer> unsorted) {
-		
+		this.asciiVal = unsorted;
 		sortedAsciiMap = new HashMap<String, Integer>();
-		ArrayList<String> asciiValArray = MesoEquivalent.sameAvgArray;
+		
+		ArrayList<String> asciiValArray = new ArrayList<String>();
+		
+		for(Entry<String, Integer> out : asciiVal.entrySet()) {
+			asciiValArray.add(out.getKey());
+		}
 		
 		for(int i = 0; i < asciiValArray.size(); ++i) {
 	            for (int j = i + 1; j < 4; ++j) {

@@ -13,6 +13,7 @@ public class MesoEquivalent {
 	private String stationID;
 	private ArrayList<String> sameStationArray = new ArrayList<String>();
 	private int asciiCalAvg = MesoAsciiCal.asciiCalAvg;
+	private int NRMNasciiCalAvg = MesoAsciiCal.NRMNasciiCalAvg;
 	public static ArrayList<String> sameAvgArray;
 	
 	public MesoEquivalent(String stId) {
@@ -61,10 +62,10 @@ public class MesoEquivalent {
 			
 			Avg = (int) Math.round(asciiAvg);
 			
-			int CalculatedAverage = (int)Math.round((Avg + 79) / 2);
+			int CalculatedAverage = Math.round((Avg + NRMNasciiCalAvg) / 2);
 			
 			
-			if (CalculatedAverage == 76) {
+			if (CalculatedAverage == asciiCalAvg) {
 				sameAvgArray.add(stationName);
 			}
 		}

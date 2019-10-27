@@ -4,6 +4,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 
 	protected MesoStation stationID;
 	public static int asciiCalAvg;
+	public static int NRMNasciiCalAvg;
 	public MesoAsciiCal(MesoStation mesoStation) {
 		
 		this.stationID = mesoStation;
@@ -26,7 +27,7 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		
 		//calAvg = (int)Math.floor(asciiAvg + 0.25);
 		NRMNcalAvg = (int)Math.round(NRMNasciiAvg);
-		
+		NRMNasciiCalAvg = NRMNcalAvg;
 		//************************************
 		int calAvg = 0;
 		double[] asciiVal = new double[4];
