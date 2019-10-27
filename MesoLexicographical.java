@@ -13,10 +13,10 @@ public class MesoLexicographical extends MesoSortedAbstract
 		this.asciiVal = asciiVal;
 		Map<String, Integer> sorted = sortedMap(asciiVal);
 		
-            System.out.println(sorted);
-//		for (Entry<String, Integer> sorted : sortedAsciiMap) {
-//			System.out.println();
-//		}
+            
+		for (Entry<String, Integer> out : sorted.entrySet()) {
+			System.out.println(out.getKey() + " " + out.getValue());
+		}
 	
 	}
 
