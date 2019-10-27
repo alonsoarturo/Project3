@@ -10,13 +10,13 @@ public class MesoLexicographical extends MesoSortedAbstract
 	private HashMap<String, Integer> sortedAsciiMap;
 	
 	public MesoLexicographical(HashMap<String, Integer> asciiVal) {
-		this.asciiVal = asciiVal;
-		Map<String, Integer> sorted = sortedMap(asciiVal);
-		
-            
-		for (Entry<String, Integer> out : sorted.entrySet()) {
-			System.out.println(out.getKey() + " " + out.getValue());
-		}
+//		this.asciiVal = asciiVal;
+//		Map<String, Integer> sorted = sortedMap(asciiVal);
+//		
+//            
+//		for (Entry<String, Integer> out : sorted.entrySet()) {
+//			System.out.println(out.getKey() + " " + out.getValue());
+//		}
 	
 	}
 
@@ -38,7 +38,7 @@ public class MesoLexicographical extends MesoSortedAbstract
 	        }
 	       
 	        for(int i = 0; i < asciiValArray.size(); i++) {
-	            sortedAsciiMap.put(asciiValArray.get(i), 73);
+	            sortedAsciiMap.put(asciiValArray.get(i), 76);
 	        }
 		
 		return sortedAsciiMap;
