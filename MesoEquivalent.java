@@ -12,6 +12,8 @@ public class MesoEquivalent {
 	private ArrayList<String> stationArray = new ArrayList<String>();
 	private String stationID;
 	private ArrayList<String> sameStationArray = new ArrayList<String>();
+	private int asciiCalAvg = MesoAsciiCal.asciiCalAvg;
+	public static ArrayList<String> sameAvgArray;
 	
 	public MesoEquivalent(String stId) {
 		this.stationID = stId;
@@ -26,7 +28,7 @@ public class MesoEquivalent {
 	}
 
 	public HashMap<String, Integer> calAsciiEqual() {
-		Integer inputAsciiAvg = 73;
+		Integer inputAsciiAvg = asciiCalAvg;
 		//sameStationArray = CalSameAsciiAvg();
 		
 		for (int i = 0; i < CalSameAsciiAvg().size(); i++) {
@@ -36,13 +38,14 @@ public class MesoEquivalent {
 	}
 	
 	public ArrayList<String> CalSameAsciiAvg() {
-		int asciiCalAvg = MesoAsciiCal.asciiCalAvg;
-		ArrayList<String> sameAvgArray = new ArrayList<String>();
+		
+		sameAvgArray = new ArrayList<String>();
 		
 		int Avg;
 		double[] asciiVal = new double[4];
 		double asciiAvg = 0.0;
 		String stationName;
+		
 		for(int i = 0; i < stationArray.size(); i++) {
 			
 			Avg = 0;
